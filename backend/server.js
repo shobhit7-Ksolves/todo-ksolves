@@ -12,7 +12,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI, {
+
+mongoose.connect( process.env.mongoUri || 'mongodb://localhost:27017/todo-list', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
