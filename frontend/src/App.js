@@ -80,23 +80,23 @@ function App() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await axios.get(process.env.REACT_URL ||'http://localhost:5000/todos');
+    const response = await axios.get(process.env.REACT_URL ||'http://node-service:5000/todos');
     setTodos(response.data);
   };
 
   const addTodo = async () => {
-    await axios.post(process.env.REACT_URL || 'http://localhost:5000/todos', { text });
+    await axios.post(process.env.REACT_URL || 'http://node-service:5000/todos', { text });
     setText('');
     fetchTodos();
   };
 
   const toggleTodo = async (id, completed) => {
-    await axios.put(process.env.REACT_URL || `http://localhost:5000/todos/${id}`, { completed: !completed });
+    await axios.put(process.env.REACT_URL || `http://node-service:5000/todos/${id}`, { completed: !completed });
     fetchTodos();
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(process.env.REACT_URL || `http://localhost:5000/todos/${id}`);
+    await axios.delete(process.env.REACT_URL || `http://node-service:5000/todos/${id}`);
     fetchTodos();
   };
 
