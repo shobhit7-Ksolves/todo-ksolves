@@ -80,23 +80,23 @@ function App() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await axios.get('http://192.168.49.2:30797/todos');
+    const response = await axios.get(process.env.REACT_URL ||'http://localhost:5000/todos');
     setTodos(response.data);
   };
 
   const addTodo = async () => {
-    await axios.post('http://192.168.49.2:30797/todos', { text });
+    await axios.post(process.env.REACT_URL || 'http://localhost:5000/todos', { text });
     setText('');
     fetchTodos();
   };
 
   const toggleTodo = async (id, completed) => {
-    await axios.put(`http://192.168.49.2:30797/todos/${id}`, { completed: !completed });
+    await axios.put(process.env.REACT_URL || `http://localhost:5000/todos/${id}`, { completed: !completed });
     fetchTodos();
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://192.168.49.2:30797/todos/${id}`);
+    await axios.delete(process.env.REACT_URL || `http://localhost:5000/todos/${id}`);
     fetchTodos();
   };
 

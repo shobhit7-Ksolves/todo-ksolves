@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
+const path = require('path');
+
+
 
 
 
@@ -12,8 +15,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const mongoUri=process.env.mongoURL
+console.log(process.env.mongoURL);
 
-mongoose.connect( process.env.mongoUri || 'mongodb://db-service:27017/db', {
+mongoose.connect( process.env.mongoURL , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
